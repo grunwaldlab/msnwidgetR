@@ -1,0 +1,8 @@
+dependencies:
+  - name: msnwidget-js
+    version: 0.0.0
+    src: htmlwidgets/lib/msnwidget-0.0.0
+    script:
+      - msnwidget.min.js
+    stylesheet:
+      - msnwidget.css
