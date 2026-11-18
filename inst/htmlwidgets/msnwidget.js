@@ -11,10 +11,11 @@ HTMLWidgets.widget({
         if (widget) {
           widget.destroy();
         }
+        const options = x.options || {};
+        delete x.options;
 
-        widget = window.msnwidget.msnWidget(el, x.datasets || x.dataset || [],
-          { offline: true, width: width, height: height }
-        );
+        widget = window.msnwidget.msnWidget(el, x, options);
+        // widget = window.msnwidget.msnWidget(el, { name: x.name, x.data, kind: x.kind, x.metadata }, { offline: true, x.options })
       },
 
       resize: function (width, height) {
