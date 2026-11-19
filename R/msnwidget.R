@@ -27,7 +27,7 @@ msnwidget <- function(name = NULL, data = NULL, kind = NULL, metadata = NULL, op
       utils::unzip(path, list = T),
       error = function(e) NULL
     )
-    is.data.frame(path) && nrow(path) > 0 && any(grepl("\\.vcf$", files$Name, ignore.case = T))
+    is.data.frame(files) && nrow(files) > 0 && any(grepl("\\.vcf$", files$Name, ignore.case = TRUE))
   }
 
   infer_kind <- function(path) {
@@ -119,10 +119,13 @@ msnwidget <- function(name = NULL, data = NULL, kind = NULL, metadata = NULL, op
       }
     )
       parsed$name <- basename(data[[i]])
-      parsed$metadata <- parse_metadata(if (length(metadata)) metadata[[min(i, length(metadata))]] else NULL)
       parsed
     })
-    dataset <- list(name = name %||% "Combined dataset", datasets = datasets)
+    dataset <- list(
+      name = name %||% "Combined dataset",
+      datasets = datasets,
+      metadata = parse_metadata(metadata)
+    )
   } else {
     dataset <- parse_data_path(data, kind)
     dataset$name <- name %||% basename(data)
