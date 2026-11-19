@@ -12,8 +12,10 @@ HTMLWidgets.widget({
           widget.destroy();
         }
 
-        widget = window.msnwidget.msnWidget(el, x.datasets || x.dataset || [],
-          { offline: true, width: width, height: height }
+        widget = window.msnwidget.msnWidget(
+          el,
+          x.datasets || x.dataset || [],
+          { ...(x.options || {}), offline: true, width: width, height: height }
         );
       },
 
