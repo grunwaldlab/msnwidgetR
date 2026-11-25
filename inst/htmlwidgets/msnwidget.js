@@ -14,7 +14,7 @@ HTMLWidgets.widget({
 
         widget = window.msnwidget.msnWidget(
           el,
-          x.datasets || x.dataset || [],
+          x.dataset || x.datasets || [],
           { ...(x.options || {}), offline: true, width: width, height: height }
         );
       },
